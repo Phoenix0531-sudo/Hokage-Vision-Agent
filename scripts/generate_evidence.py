@@ -1,4 +1,5 @@
 """Generate portfolio evidence: mock backend boxes on a synthetic image + architecture card."""
+
 from __future__ import annotations
 
 import sys
@@ -7,16 +8,16 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # noqa: E402  (must set backend before import)
 import numpy as np
-from matplotlib.gridspec import GridSpec
-from matplotlib.patches import FancyBboxPatch, Rectangle
-from PIL import Image, ImageDraw
+from matplotlib.gridspec import GridSpec  # noqa: E402
+from matplotlib.patches import Rectangle  # noqa: E402
+from PIL import Image, ImageDraw  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from hokage_vision.vision.backends.mock import MockBackend
+from hokage_vision.vision.backends.mock import MockBackend  # noqa: E402
 
 OUT = ROOT / "docs" / "screenshots"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -52,7 +53,9 @@ def main() -> None:
     result = backend.predict_image(fixture)
 
     fig = plt.figure(figsize=(12.8, 7.2), facecolor=BG)
-    gs = GridSpec(2, 3, figure=fig, wspace=0.25, hspace=0.3, left=0.05, right=0.98, top=0.88, bottom=0.08)
+    gs = GridSpec(
+        2, 3, figure=fig, wspace=0.25, hspace=0.3, left=0.05, right=0.98, top=0.88, bottom=0.08
+    )
 
     ax_img = fig.add_subplot(gs[:, 0:2])
     ax_img.set_facecolor(PANEL)
@@ -97,7 +100,16 @@ def main() -> None:
         "Agent never invents boxes;",
         "tools call InferenceService only.",
     ]
-    ax_card.text(0.05, 0.95, "\n".join(lines), transform=ax_card.transAxes, va="top", color=FG, family="monospace", fontsize=9)
+    ax_card.text(
+        0.05,
+        0.95,
+        "\n".join(lines),
+        transform=ax_card.transAxes,
+        va="top",
+        color=FG,
+        family="monospace",
+        fontsize=9,
+    )
 
     ax_arch = fig.add_subplot(gs[1, 2])
     ax_arch.set_facecolor(PANEL)

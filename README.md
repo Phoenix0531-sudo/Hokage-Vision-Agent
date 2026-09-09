@@ -92,6 +92,16 @@ hokage-vision model ...
 hokage-vision agent ...
 ```
 
+## Quickstart
+
+One command runs the whole pipeline (detect, validate, smoke train, agent, report) with the deterministic mock backend — no GPU, no weights, no network:
+
+```bash
+python examples/quickstart.py
+```
+
+All artifacts land under `runs/quickstart/`. See [docs/quickstart.md](docs/quickstart.md) for the 60-second walkthrough.
+
 ## Install
 
 Python **>= 3.12**. Hatchling src layout.

@@ -12,6 +12,7 @@ extra_css:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
+  - Quickstart: quickstart.md
   - Usage: usage.md
   - Architecture: architecture.md
   - Data And Models: data-and-models.md

@@ -1,4 +1,5 @@
 """Capture real Qt window screenshots of Hokage Vision Agent with mock detection."""
+
 from __future__ import annotations
 
 import os
@@ -12,7 +13,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 FIXTURES = OUT / "fixtures"
 FIXTURES.mkdir(exist_ok=True)
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw  # noqa: E402  (needs sys.path tweak first)
 
 
 def make_demo_image(path: Path, w: int = 720, h: int = 420) -> Path:
@@ -30,9 +31,10 @@ def make_demo_image(path: Path, w: int = 720, h: int = 420) -> Path:
 
 def main() -> None:
     os.environ.setdefault("QT_QPA_PLATFORM", "windows")
+    import time
+
     from PySide6.QtGui import QPixmap
     from PySide6.QtWidgets import QApplication
-    import time
 
     app = QApplication.instance() or QApplication(sys.argv)
 
