@@ -1,6 +1,6 @@
 # License Boundaries
 
-This repository currently contains both new Hokage Vision Agent code and legacy YOLOv5-derived code. Treat license boundaries carefully until legacy migration is complete.
+This repository contains new Hokage Vision Agent code. A legacy YOLOv5-derived tree (`legacy/old_project/`) was previously vendored here and has been removed from the working tree; git history preserves it. No YOLOv5-derived source is present in the current tree.
 
 ## Main Project Source Code
 
@@ -8,7 +8,7 @@ New code under `src/hokage_vision`, `apps`, `scripts`, tests, Docker files, work
 
 ## Legacy YOLOv5 Code
 
-Legacy YOLOv5-derived files remain governed by the applicable upstream YOLOv5 license for the imported version. Best-effort comparison indicates the retained snapshot is closest to Ultralytics YOLOv5 `v7.0`, with several core files matching exactly, but the original import tag was not recorded. Do not copy legacy YOLOv5 code into `src/hokage_vision`.
+Legacy YOLOv5-derived files (removed from the working tree, retained in git history) remain governed by the applicable upstream YOLOv5 license for the imported version. Best-effort comparison indicated the retained snapshot was closest to Ultralytics YOLOv5 `v7.0`, with several core files matching exactly, but the original import tag was not recorded. Do not copy legacy YOLOv5 code into `src/hokage_vision`.
 
 ## Documentation
 

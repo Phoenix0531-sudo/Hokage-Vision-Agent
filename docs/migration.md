@@ -14,14 +14,14 @@ The original repository was mostly a YOLOv5-style tree at the repository root:
 - Project-specific dataset labels/classes: `datasets/classes.txt`, `datasets/labels/`.
 - Demo/readme assets: `readme_images.png`, `readme_images/`.
 
-The legacy tree is now isolated under `legacy/old_project/`. The new project must not import YOLOv5 legacy modules directly into `src/hokage_vision`. A compatibility backend may call legacy code only through an explicit boundary.
+The legacy tree was previously isolated under `legacy/old_project/`. It has since been removed from the working tree (see commit `chore: remove vendored legacy yolo toolchain (unused)`); the full snapshot remains retrievable from git history for license audit. The new project must not import YOLOv5 legacy modules directly into `src/hokage_vision`. A compatibility backend may call legacy code only through an explicit boundary.
 
 ## Migration Strategy
 
 1. Preserve old code during the first audit phase.
 2. Create a new package under `src/hokage_vision` with shared types, configuration, and mock-first inference.
 3. Build CLI, API, GUI, agent, dataset, training, and model-management features against the new package.
-4. Move or isolate legacy YOLOv5 code under `legacy/old_project/` once the new mock workflow is runnable.
+4. Legacy YOLOv5 code was isolated under `legacy/old_project/` once the new mock workflow was runnable, and later removed from the working tree once no runtime, CI, or build references remained.
 5. Keep the legacy backend optional and documented as a compatibility path, not the default runtime.
 6. Keep data, model weights, generated runs, API keys, and private datasets out of git.
 
@@ -37,9 +37,9 @@ The legacy tree is now isolated under `legacy/old_project/`. The new project mus
 
 ## Acceptance Criteria
 
-- Legacy code remains available for reference, license audit, and compatibility.
+- Legacy code is no longer present in the working tree; git history preserves the full snapshot for reference, license audit, and compatibility.
 - New code lives under `src/hokage_vision`.
-- Root-level `data/` and `models/` now contain only the new project workspace and registry metadata; old YOLOv5 assets were moved to `legacy/old_project/`.
+- Root-level `data/` and `models/` now contain only the new project workspace and registry metadata; old YOLOv5 assets were previously moved to `legacy/old_project/` and that tree has since been removed from the working tree (git history retains it).
 - The default backend is `mock`.
 - CI, GUI smoke tests, API tests, and agent tests do not depend on GPU, private data, real YOLO weights, or external LLM APIs.
 - Documentation clearly separates source code, legacy code, documentation, model weights, dataset images, and annotations.

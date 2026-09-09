@@ -129,9 +129,7 @@ exclude = [
   "test_open_image.py",
   "train.py",
   "untitled.py",
-  "utils",
   "val.py",
-  "legacy/old_project",
 ]
 
 [tool.ruff.lint]
