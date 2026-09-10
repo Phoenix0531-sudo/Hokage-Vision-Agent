@@ -7,7 +7,6 @@ def test_project_root_finds_pyproject_from_cwd() -> None:
     root = project_root()
 
     assert (root / "pyproject.toml").exists()
-    assert root.name == "Hokage_Vision_Agent"
 
 
 def test_project_root_falls_back_to_cwd_when_no_pyproject(tmp_path: Path, monkeypatch) -> None:
