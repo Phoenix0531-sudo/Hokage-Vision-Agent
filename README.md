@@ -35,6 +35,16 @@ Docs site (MkDocs): <https://phoenix0531-sudo.github.io/Hokage_Vision_Agent/>
       <br><strong>Architecture schematic</strong> — CLI / GUI / API → backends
     </td>
   </tr>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/closed-loop-detection.png" alt="Real trained-model detection on synthetic validation image">
+      <br><strong>Closed-loop real detection</strong> — trained in-repo (synthetic data → yolov8n fine-tune → ONNX export → <code>UltralyticsBackend</code> + rendering), 24/24 val accuracy
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/preview.png" alt="Architecture schematic">
+      <br><strong>Architecture schematic</strong> — CLI / GUI / API → backends
+    </td>
+  </tr>
 </table>
 
 ```bash
@@ -101,6 +111,21 @@ python examples/quickstart.py
 ```
 
 All artifacts land under `runs/quickstart/`. See [docs/quickstart.md](docs/quickstart.md) for the 60-second walkthrough.
+
+Want the real thing instead of mock? One command trains a model in-repo and runs live inference through the same backends:
+
+```bash
+# synthetic data -> yolov8n fine-tune (CPU) -> ONNX export -> UltralyticsBackend detection
+python scripts/closed_loop_demo.py --epochs 40
+```
+
+```text
+[4/4] real inference on naruto_000.jpg:
+  naruto  conf=1.00 box=(34,55,185,169)
+closed loop complete.
+```
+
+The trained model reaches 24/24 val accuracy (see the [model card](models/model-card.synthetic-shapes.md)) and the detection figure ships in the README above.
 
 ## Install
 

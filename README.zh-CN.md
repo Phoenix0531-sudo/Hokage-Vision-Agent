@@ -25,6 +25,16 @@
       <br><strong>图片检测</strong> — mock 框 + 结果表
     </td>
   </tr>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/closed-loop-detection.png" alt="仓库内真实训练模型的检测效果图">
+      <br><strong>闭环真实检测</strong> — 仓库内训练（合成数据 → yolov8n 微调 → ONNX 导出 → UltralyticsBackend 渲染），验证集 24/24 全对
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/preview.png" alt="架构示意图">
+      <br><strong>架构示意图</strong> — CLI / GUI / API → backends
+    </td>
+  </tr>
 </table>
 
 ```bash
@@ -47,6 +57,20 @@ cd Hokage_Vision_Agent
 python -m pip install -e ".[dev,api]"
 pytest -q tests/unit tests/integration
 hokage-vision --help
+```
+
+一条命令跑通全流程（mock 后端，无需 GPU / 权重 / 网络）：
+
+```bash
+python examples/quickstart.py
+```
+
+想看真实模型？一条命令在仓库内完成训练 + 推理闭环：
+
+```bash
+# 合成数据 → yolov8n CPU 微调 → ONNX 导出 → UltralyticsBackend 检测
+python scripts/closed_loop_demo.py --epochs 40
+# 输出示例： naruto  conf=1.00 box=(34,55,185,169)  （验证集 24/24 全对）
 ```
 
 Docker：

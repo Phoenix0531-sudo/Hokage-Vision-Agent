@@ -110,6 +110,16 @@ markers = [
   "packaging: package build tests",
 ]
 
+[tool.coverage.run]
+source = ["src/hokage_vision"]
+omit = ["src/hokage_vision/ui/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+]
+
 [tool.ruff]
 target-version = "py312"
 line-length = 100

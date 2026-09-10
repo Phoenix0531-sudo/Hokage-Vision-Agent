@@ -60,7 +60,15 @@ jobs:
       - name: Ruff (critical rules, hard)
         run: ruff check src tests/unit tests/integration --select E9,F63,F7,F82
 
-      - name: Pytest unit + integration
+      - name: Pytest unit + integration (coverage gate 60%)
         run: |
           # packaging wheel/console-script test is flaky on runner isolation; covered by package.yml
-          python -m pytest -q tests/unit tests/integration
+          python -m pytest -q tests/unit tests/integration --cov=hokage_vision --cov-report=term --cov-report=xml --cov-fail-under=60
+
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: coverage.xml
+          if-no-files-found: ignore
